@@ -5,6 +5,22 @@
  */
 
 function sleep(milliseconds) {
+
+    const P1 = new Promise(function(resolve, reject){
+        const t = Date.now();
+        while(Date.now() - t < milliseconds){
+           //keeping thread busy
+        }
+        resolve();
+    });
+
+    console.log("Start");
+    
+    P1.then(function(){
+        console.log("Ended after busy waiting for ", milliseconds, "millisecons");
+    })
+    return P1;
+
 }
 
 module.exports = sleep;

@@ -7,18 +7,62 @@
 
 function wait1(t) {
 
+    const P1 = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            console.log("Wait 1 over");
+            resolve();
+        }, t*1000);
+    })
+
+    P1.then(function(){
+        console.log("Promise1 Consumed");
+    })
+    return P1;
 }
 
 function wait2(t) {
 
+    const P1 = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            console.log("Wait 2 over");
+            resolve();
+        }, t*1000);
+    })
+
+    P1.then(function(){
+        console.log("Promise2 Consumed");
+    })
+    return P1;
 }
 
 function wait3(t) {
 
+    const P1 = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            console.log("Wait 3 over");
+            resolve();
+        }, t*1000);
+    })
+
+    P1.then(function(){
+        console.log("Promise3 Consumed");
+    })
+    return P1;
 }
 
 function calculateTime(t1, t2, t3) {
 
-}
+    const t = Date.now();
+
+  // Sequentially call the functions in order
+  return wait1(t1).then(() => wait2(t2))
+                  .then(() => wait3(t3))
+                  .then(()=>{
+                        const totalTime = Date.now() - t;
+                        console.log('Entire operation completed in ' + totalTime + ' milliseconds');
+                        return totalTime;
+            });
+        }
+
 
 module.exports = calculateTime;
